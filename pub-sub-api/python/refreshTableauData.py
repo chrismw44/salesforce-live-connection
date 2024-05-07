@@ -259,7 +259,7 @@ def groupContacts(dfTransformE):
       if not dfTransformE.empty:
         dfGroupedContacts = dfTransformE[['Activity ID', 'Contact Full Name']].dropna()
         dfGroupedContacts = dfGroupedContacts.rename(columns={'Contact Full Name': 'SF Contacts'})
-        dfGroupedContacts = dfGroupedContacts.groupby("Activity ID",as_index=False).agg(lambda x: ', '.join(x.tolist()))
+        dfGroupedContacts = dfGroupedContacts.groupby("Activity ID",as_index=False).agg(lambda x: ', '.join(set(x.tolist())))
         dfTransformE = pd.merge(dfTransformE, dfGroupedContacts, on="Activity ID", how="left")
         dfTransformE['Contacts'] = dfTransformE['Contacts'].fillna(dfTransformE['SF Contacts']) 
         dfTransformE['Name'] = dfTransformE['Contacts Split'].fillna(dfTransformE['Contact Full Name']) 
