@@ -153,6 +153,7 @@ def eventColleagueDataRequest(endpoint, queryEC, access_token):
 							'JobTitle': node['JobTitle__c']['value'] if 'JobTitle__c' in node else None,
 							'Languages Spoken': node['Lang__c']['value'] if 'Lang__c' in node else None,
 							'Mobile Phone': node['MobilePhone__c']['value'] if 'MobilePhone__c' in node else None,
+              'Mobile Phone Clean': node['MobilePhoneClean__c']['value'] if 'MobilePhoneClean__c' in node else None,
 							'Country': node['Country__c']['value'] if 'Country__c' in node else None,
 							'No of Polos': node['NoOfPolos__c']['value'] if 'NoOfPolos__c' in node else None,
 							'Polo Size': node['PoloSize__c']['value'] if 'PoloSize__c' in node else None,

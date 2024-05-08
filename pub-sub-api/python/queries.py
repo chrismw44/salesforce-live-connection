@@ -183,6 +183,9 @@ query EventColleague {
             MobilePhone__c {
               value
             }
+            MobilePhoneClean__c {
+              value
+            }
             Country__c {
               value
             }
