@@ -225,6 +225,7 @@ def eventTransform(dfTransformE):
       dfTransformE['PartnerAttendeesSplit'] = dfTransformE.loc[:, 'Partner Attendees']
       dfTransformE['EventRelationIDsSplit'] = dfTransformE.loc[:, 'Event Relation IDs']
       dfTransformE['MeetingDatesSplit'] = dfTransformE.loc[:, 'Meeting Dates']
+      dfTransformE['CountrySplit'] = dfTransformE.loc[:, 'Country']
 
       #Split and pivot product and contact fields
       dfTransformE = dfTransformE.assign(ProductFieldSplit=dfTransformE.ProductFieldSplit.str.split(", ")).explode("ProductFieldSplit")
@@ -245,6 +246,9 @@ def eventTransform(dfTransformE):
       dfTransformE = dfTransformE.assign(MeetingDatesSplit=dfTransformE.MeetingDatesSplit.str.split(", ")).explode("MeetingDatesSplit")
       dfTransformE.rename(columns={"MeetingDatesSplit": "Meeting Dates Split"}, inplace=True)
       dfTransformE['Dates Attending Split'] = dfTransformE.loc[:, 'Meeting Dates Split']
+
+      dfTransformE = dfTransformE.assign(CountrySplit=dfTransformE.CountrySplit.str.split(", ")).explode("CountrySplit")
+      dfTransformE.rename(columns={"CountrySplit": "Country Split"}, inplace=True)
 
       #Create new merged columns for Company, Recorder Email and Requested By
       dfTransformE['Company'] = np.where(dfTransformE['Account ID'] == '0016700006EtLL3AAN', dfTransformE['Subject'], dfTransformE['Account Name'])
@@ -311,6 +315,7 @@ def eventColleagueTransform(dfTransformEC):
       dfTransformEC['DatesAttendingSplit'] = dfTransformEC.loc[:, 'Dates Attending']
       dfTransformEC['LanguagesSpokenSplit'] = dfTransformEC.loc[:, 'Languages Spoken']
       dfTransformEC['ProductSpecialitySplit'] = dfTransformEC.loc[:, 'Product Speciality']
+      dfTransformEC['Country Split'] = dfTransformEC.loc[:, 'Country']
 
       #Split and pivot date, language and product fields
       dfTransformEC = dfTransformEC.assign(DatesAttendingSplit=dfTransformEC.DatesAttendingSplit.str.split(", ")).explode("DatesAttendingSplit")
