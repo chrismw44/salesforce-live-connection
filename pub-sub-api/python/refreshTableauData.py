@@ -357,12 +357,13 @@ def joinedDataFrame(dfTransformE, dfTransformEC):
 
     dfAttendanceMeeting['Start Date Time'] = dfAttendanceMeeting['Start Date Time'].dt.strftime('%Y-%m-%d %H:%M:%S')
     dfAttendanceMeeting['Start Date Time'] = pd.to_datetime(dfAttendanceMeeting['Start Date Time'])
-    dfAttendanceMeeting['Start Date Time'] += pd.Timedelta(hours=1)
+    dfAttendanceMeeting['Start Date Time'] += pd.Timedelta(hours=2)
     dfAttendanceMeeting['End Date Time'] = dfAttendanceMeeting['End Date Time'].dt.strftime('%Y-%m-%d %H:%M:%S')
     dfAttendanceMeeting['End Date Time'] = pd.to_datetime(dfAttendanceMeeting['End Date Time'])
-    dfAttendanceMeeting['End Date Time'] += pd.Timedelta(hours=1)
+    dfAttendanceMeeting['End Date Time'] += pd.Timedelta(hours=2)
   
     dfAttendanceMeeting['Company'] = dfAttendanceMeeting['Company'].str.replace("&amp;", "&")
+    dfAttendanceMeeting['Company'] = dfAttendanceMeeting['Company'].str.replace("&#39;", "'")
     dfAttendanceMeeting.loc[dfAttendanceMeeting['Objective1'] == 'Drupa Meeting', 'Meeting Room Allocated'] = 'Not Requested'
 
 

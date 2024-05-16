@@ -24,6 +24,7 @@ expired_error = False
 while True:
     try:
         if access_token is None or expired_error:
+            access_token = None
             access_token = get_salesforce_access_token(PRODUCTION_USERNAME)
             if access_token:
                 print("Access token received.")
@@ -106,10 +107,9 @@ while True:
 
 
                     #Get, transform & join Event and Event Colleague data
-                    try:
-                        process_event_data(ENDPOINT, queryEvent, queryEventContacts, queryEventColleague, access_token)
-                    except Exception as e:
-                        log_error("Error processing event data: " + str(e))
+                    
+                    process_event_data(ENDPOINT, queryEvent, queryEventContacts, queryEventColleague, access_token)
+                    
 
 
                 else:
